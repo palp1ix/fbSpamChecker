@@ -26,18 +26,18 @@ async function processNextTab(tabIds) {
     await new Promise(resolve => chrome.tabs.update(currentTabId, {active: true}, resolve));
     const response = await clickButtonOnTab(currentTabId);
     if (DTAS && response && response.status === "success") {
-      setTimeout(() => chrome.tabs.remove(currentTabId), 50);
+      await chrome.tabs.remove(currentTabId);
     }
     
     // Даем время на завершение всех операций
     await new Promise(resolve => setTimeout(resolve, 100));
     
     // Рекурсивно вызываем для следующей вкладки
-    processNextTab(tabIds);
+    await processNextTab(tabIds);
   } catch (error) {
     console.error("Error processing tab:", error);
     // Продолжаем со следующей вкладкой даже при ошибке
-    processNextTab(tabIds);
+    await processNextTab(tabIds);
   }
 }
 
