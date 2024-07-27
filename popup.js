@@ -3,6 +3,11 @@ document.getElementById('processAllTabs').addEventListener('click', function() {
     window.close(); 
   });
 
+document.getElementById('sortAllTabs').addEventListener('click', function() {
+    chrome.runtime.sendMessage({action: "sortAllTabs"});
+    window.close(); 
+  });
+
 const checkbox = document.getElementById('deleteTabCheckbox');
 if (checkbox) {
   checkbox.addEventListener('change', function() {
