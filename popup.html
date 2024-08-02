@@ -6,7 +6,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <div class="popup-container">
+  <div class="auth-container">
+    <p class="gradient-text">Reg in TG @palpscm</p>
+    <div class="form__group field">
+      <input type="email" class="form__field" placeholder="Name" id="auth-email" required="">
+      <label for="name" class="form__label">email</label>
+    </div>
+    <div class="form__group field">
+      <input type="password" class="form__field" placeholder="Name" id="auth-password" required="">
+      <label for="name" class="form__label">password</label>
+    </div>
+    <div id="error-container"></div>
+    <button class="ui-btn" id="register-btn">
+      <span>LOGIN</span>
+    </button>
+  </div>
+
     <div class="inside-container">
       <h3 class="gradient-text">Legion Team</h3>
     </div>
@@ -30,5 +47,6 @@
     <p id="madeby"><a href="https://t.me/palpscm" target="_blank" class="gradient-text">made by @palpscm</a></p>
   </div>
   <script src="popup.js" defer></script>
+  <script src="auth.js" type="module"></script>
 </body>
 </html>                                     

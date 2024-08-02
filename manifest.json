@@ -5,8 +5,10 @@
     "description": "Автоматически переключает вкладки и нажимает кнопку Send на Facebook",
     "permissions": [
       "tabs",
-      "activeTab"
+      "activeTab",
+      "identity"
     ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "background": {
       "scripts": ["background.js"],
       "persistent": false
