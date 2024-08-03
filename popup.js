@@ -7,7 +7,7 @@ document.getElementById('sortAllTabs').addEventListener('click', function() {
     chrome.runtime.sendMessage({action: "sortAllTabs"});
     window.close(); 
   });
-
+  
 const checkbox = document.getElementById('deleteTabCheckbox');
 if (checkbox) {
   checkbox.addEventListener('change', function() {
@@ -22,3 +22,4 @@ if (checkbox) {
 } else {
   alert('Checkbox element not found');
 }
+
