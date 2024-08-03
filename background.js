@@ -48,7 +48,7 @@ async function processNextTab(tabIds) {
     // Рекурсивно вызываем для следующей вкладки
     await processNextTab(tabIds);
   } catch (error) {
-    console.error("Error processing tab:", error);
+    console.error("Error processing tab:" + JSON.stringify(error));
     // Продолжаем со следующей вкладкой даже при ошибке
     await processNextTab(tabIds);
   }
