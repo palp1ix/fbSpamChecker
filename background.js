@@ -37,19 +37,23 @@ async function processNextTab(tabIds) {
   try {
     await new Promise(resolve => chrome.tabs.update(currentTabId, {active: true}, resolve));
     const response = await clickButtonOnTab(currentTabId);
-    if (DTAS && response && response.status === "success") {
-      await chrome.tabs.remove(currentTabId);
-    }
+
     
     // Даем время на завершение всех операций
     await new Promise(resolve => setTimeout(resolve, 100));
     
     // Рекурсивно вызываем для следующей вкладки
     await processNextTab(tabIds);
+    if (DTAS && response && response.status === "success") {
+      chrome.tabs.remove(currentTabId);
+    }
   } catch (error) {
     console.error("Error processing tab:" + JSON.stringify(error));
     // Продолжаем со следующей вкладкой даже при ошибке
     await processNextTab(tabIds);
+    if (DTAS && response && response.status === "success") {
+      chrome.tabs.remove(currentTabId);
+    }
   }
 }
 
@@ -113,7 +117,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       processNextTab(tabIds);
     });
   }
-    else if (request.action = "sortAllTabs"){
+    else if (request.action === "sortAllTabs"){
       chrome.tabs.query({}, function(tabs) {
         const tabIds = tabs.map(tab => tab.id);
         sortNextTab(tabIds);

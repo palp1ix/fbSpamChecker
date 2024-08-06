@@ -10,11 +10,6 @@ import {
   setPersistence
  } from './libs/firebase-auth-web-extension.js';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCT3xLLQz_o4aeTZE-9DAX910J3Fd0U75k",
   authDomain: "fbspam-f7e95.firebaseapp.com",
@@ -27,7 +22,6 @@ const firebaseConfig = {
 };
 const authDiv = document.querySelector('.auth-container');
 const errorDiv = document.querySelector('#error-container');
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -56,6 +50,7 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+//Пока не используется, форматирование даты
 function formatDate(date) {
   const pad = (num) => num.toString().padStart(2, '0');
   const year = date.getFullYear();

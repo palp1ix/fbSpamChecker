@@ -28,7 +28,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-// В вашем content script
+// Проверка на отзывы
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "checkElement") {
     const element = document.querySelector("div.x78zum5.x1q0g3np.x11i5rnm.x1mh8g0r.x1yrsyyn");
