@@ -36,12 +36,9 @@ const loginEmailPassword = async () => {
     errorDiv.innerHTML = "";
     const email = document.getElementById('auth-email').value;
     const password = document.getElementById('auth-password').value;
-  
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -55,8 +52,17 @@ document.getElementById('register-btn').addEventListener('click', loginEmailPass
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    user.getIdToken().then((token) => {
       authDiv.style.display = 'none';
-    });
   }
 });
+
+function formatDate(date) {
+  const pad = (num) => num.toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  const seconds = pad(date.getSeconds());
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}

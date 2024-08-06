@@ -5,7 +5,7 @@ function clickButtonOnTab(tabId) {
   return new Promise((resolve) => {
     chrome.tabs.sendMessage(tabId, {action: "clickButton"}, function(response) {
       if (chrome.runtime.lastError) {
-        console.error('Error:', chrome.runtime.lastError);
+        console.error('Error: ' + chrome.runtime.lastError.message);
         resolve({status: "error", message: "Error sending message"});
       } else {
         resolve(response);
@@ -18,7 +18,7 @@ function checkForSuitable(tabId) {
   return new Promise((resolve) => {
     chrome.tabs.sendMessage(tabId, {action: "checkTab"}, function(response) {
       if (chrome.runtime.lastError) {
-        console.error('Error:', chrome.runtime.lastError);
+        console.error('Error: ' +  chrome.runtime.lastError.message);
         resolve({status: "error", message: "Error sending message"});
       } else {
         resolve(response);
@@ -26,7 +26,6 @@ function checkForSuitable(tabId) {
     });
   });
 }
-
 async function processNextTab(tabIds) {
   if (tabIds.length === 0) {
     console.log("All tabs processed");

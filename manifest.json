@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Spam Authomizer",
   "version": "1.3.1",
   "description": "Автоматически переключает вкладки и нажимает кнопку Send на Facebook",
@@ -10,9 +10,9 @@
     "storage"
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
-  "action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icons8-scam-parzival’-1997-outline-color-16.png",
@@ -32,9 +32,7 @@
     }
   ],
   "web_accessible_resources": [
-    {
-      "resources": ["auth.js"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+    "auth.js"
+  ],
+  "content_security_policy": "script-src 'self' https://www.gstatic.com https://www.googleapis.com https://www.googletagmanager.com; object-src 'self'"
 }
