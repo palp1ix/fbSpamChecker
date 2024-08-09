@@ -33,6 +33,10 @@ function mutationCallback(mutationsList, observer) {
   }
 }
 
+//ПРОВЕРКА на случай если чел удалил auth до запуска
+if(!document.querySelector('.auth-container'))
+  window.close();
+
 // Создаем экземпляр MutationObserver и передаем ему callback функцию
 const observer = new MutationObserver(mutationCallback);
 

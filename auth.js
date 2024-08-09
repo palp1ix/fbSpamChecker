@@ -22,11 +22,13 @@ const firebaseConfig = {
 };
 const authDiv = document.querySelector('.auth-container');
 const errorDiv = document.querySelector('#error-container');
+const loaderDiv = document.querySelector('.loader');
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 //connectAuthEmulator(auth, "http://localhost:9099");
 const loginEmailPassword = async () => {
+    loaderDiv.style.display = 'block';
     errorDiv.innerHTML = "";
     const email = document.getElementById('auth-email').value;
     const password = document.getElementById('auth-password').value;
@@ -35,6 +37,7 @@ const loginEmailPassword = async () => {
       const user = userCredential.user;
     })
     .catch((error) => {
+      loaderDiv.style.display = 'none';
       const errorCode = error.code;
       const errorMessage = error.message;
       
@@ -45,6 +48,7 @@ const loginEmailPassword = async () => {
 document.getElementById('register-btn').addEventListener('click', loginEmailPassword);
 
 auth.onAuthStateChanged((user) => {
+  loaderDiv.style.display = 'none';
   if (user) {
       authDiv.style.display = 'none';
   }
