@@ -28,8 +28,8 @@ const auth = getAuth(app);
 
 //connectAuthEmulator(auth, "http://localhost:9099");
 const loginEmailPassword = async () => {
-    loaderDiv.style.display = 'block';
     errorDiv.innerHTML = "";
+    loaderDiv.style.display = 'flex';
     const email = document.getElementById('auth-email').value;
     const password = document.getElementById('auth-password').value;
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
